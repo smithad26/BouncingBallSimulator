@@ -1,2 +1,2 @@
 # BouncingBallSimulator
-Simulator used in creating bouncing ball physics
+Simulator used in creating bouncing ball physics animations

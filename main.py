@@ -1,4 +1,5 @@
 import pygame
+from colors import Colors
 
 def main() -> None:
 	pygame.init()
@@ -6,13 +7,12 @@ def main() -> None:
 	HEIGHT = 800
 	window = pygame.display.set_mode((WIDTH, HEIGHT))
 	clock = pygame.time.Clock()
-	BLACK = (0, 0, 0)
-	ORANGE = (255, 165, 0)
-	RED = (255, 0, 0)
 	CIRCLE_CENTER = [WIDTH/2, HEIGHT/2]
 	CIRCLE_RADIUS = 150
 	BALL_RADIUS = 5
 	ball_pos = [WIDTH/2, HEIGHT/2 - 120]
+	ball_vel = [0.0, 0.0]
+	GRAVITY = 0.2
 	
 	running = True
 	
@@ -21,9 +21,13 @@ def main() -> None:
 			if event.type == pygame.QUIT:
 				running = False
 				
-		window.fill(BLACK)
-		pygame.draw.circle(window, ORANGE, CIRCLE_CENTER, CIRCLE_RADIUS, 3)
-		pygame.draw.circle(window, RED, ball_pos, BALL_RADIUS)
+		ball_vel[1] += GRAVITY
+		ball_pos[0] += ball_vel[0]
+		ball_pos[1] += ball_vel[1]
+		
+		window.fill(Colors.BLACK.value)
+		pygame.draw.circle(window, Colors.WHITE.value, CIRCLE_CENTER, CIRCLE_RADIUS, 3)
+		pygame.draw.circle(window, Colors.MAGENTA.value, ball_pos, BALL_RADIUS)
 		
 		pygame.display.flip()
 		clock.tick(60)
